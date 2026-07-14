@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>free-float 是什麼？為什麼用總市值排名會有誤差｜台股指數換股資料庫</title>
+<meta name="description" content="FTSE 用 free-float（流通市值）計算指數權重，但選股排名用的是總市值。本文說明兩者的差異、以及為什麼免費資料重建不出 FTSE 的 free-float。">
+<meta name="keywords" content="free-float, 流通市值, 自由流通量, 總市值, FTSE, 指數權重, 選股排名">
+<link rel="canonical" href="https://toniclin.github.io/tw-index-rebalance/05-free-float.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="free-float 是什麼？為什麼用總市值排名會有誤差｜台股指數換股資料庫">
+<meta property="og:description" content="FTSE 用 free-float（流通市值）計算指數權重，但選股排名用的是總市值。本文說明兩者的差異、以及為什麼免費資料重建不出 FTSE 的 free-float。">
+<meta property="og:url" content="https://toniclin.github.io/tw-index-rebalance/05-free-float.html">
+<style>
+:root { --ink:#1a2233; --muted:#5b6b85; --line:#e2e8f0; --bg:#ffffff; --soft:#f7f9fc;
+  --brand:#c2740f; --accent:#1d4ed8; --up:#c0392b; --down:#1e8449; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-size:17px; line-height:1.85;
+  font-family:"Microsoft JhengHei","微軟正黑體",-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); }
+header { border-bottom:1px solid var(--line); background:var(--soft); }
+.hwrap { max-width:860px; margin:0 auto; padding:18px 20px 0; }
+.brand { font-size:21px; font-weight:bold; color:var(--ink); text-decoration:none; }
+.tagline { color:var(--muted); font-size:13.5px; margin-top:2px; }
+nav { display:flex; flex-wrap:wrap; gap:4px; margin-top:14px; }
+nav a { padding:8px 14px; font-size:14.5px; text-decoration:none; color:var(--muted);
+  border-bottom:2px solid transparent; }
+nav a:hover { color:var(--ink); }
+nav a.on { color:var(--accent); border-bottom-color:var(--accent); font-weight:bold; }
+main { max-width:860px; margin:0 auto; padding:8px 20px 50px; }
+h1 { font-size:29px; line-height:1.45; margin:32px 0 8px; }
+h2 { font-size:22px; margin:38px 0 10px; padding-bottom:8px; border-bottom:1px solid var(--line); }
+h3 { font-size:18px; margin:26px 0 6px; }
+blockquote { margin:20px 0; padding:12px 18px; background:var(--soft);
+  border-left:4px solid var(--brand); color:var(--muted); }
+blockquote strong { color:var(--ink); }
+code { background:var(--soft); padding:2px 6px; border-radius:4px; font-size:14.5px; }
+pre { background:var(--soft); border:1px solid var(--line); border-radius:8px;
+  padding:14px; overflow-x:auto; }
+pre code { background:none; padding:0; font-size:13px; line-height:1.6; }
+.tablewrap { overflow-x:auto; margin:18px 0; }
+table { border-collapse:collapse; width:100%; font-size:15px; }
+th,td { padding:9px 13px; text-align:left; border-bottom:1px solid var(--line); }
+th { background:var(--soft); font-size:14px; color:var(--muted); font-weight:normal; }
+.hit { color:var(--down); font-weight:bold; } .miss { color:var(--up); font-weight:bold; }
+.hero { padding:26px 0 6px; }
+.hero h1 { margin-top:0; }
+.lead { font-size:19px; color:var(--muted); }
+.kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin:26px 0; }
+.kpi { border:1px solid var(--line); border-radius:10px; padding:16px 18px; background:var(--soft); }
+.kpi .v { font-size:31px; font-weight:bold; color:var(--brand); line-height:1.3; }
+.kpi .l { font-size:13.5px; color:var(--muted); }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin:20px 0; }
+.card { border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
+.card a { font-weight:bold; text-decoration:none; font-size:16.5px; }
+.card p { color:var(--muted); font-size:14px; margin:6px 0 0; }
+.cta { display:block; text-align:center; margin:36px 0 0; padding:14px;
+  background:var(--brand); color:#fff; font-weight:bold; text-decoration:none; border-radius:10px; }
+.ad { margin:36px 0; min-height:1px; }
+footer { border-top:1px solid var(--line); background:var(--soft); color:var(--muted);
+  font-size:13.5px; }
+.fwrap { max-width:860px; margin:0 auto; padding:22px 20px 34px; }
+.fwrap a { color:var(--muted); }
+.disc { font-size:13px; margin-top:10px; }
+@media (max-width:600px) { body { font-size:16px; } h1 { font-size:24px; } main { padding:4px 16px 40px; } }
+</style>
+
+</head>
+<body>
+<header><div class="hwrap">
+  <a class="brand" href="index.html">📊 台股指數換股資料庫</a>
+  <div class="tagline">by 台股接盤俠 ・ 敢公開對帳的量化系統</div>
+  <nav><a href="index.html" class="">首頁</a><a href="ledger.html" class="">開獎對帳</a><a href="01-what-is-taiwan50.html" class="">台灣50 規則</a><a href="04-otc50-rules.html" class="">富櫃50 規則</a><a href="about.html" class="">關於</a></nav>
+</div></header>
+<main>
+<h1>free-float 是什麼？為什麼總市值排名會有誤差</h1>
+<p>這篇要講的是我們這套方法<strong>先天的限制</strong>。與其等別人來問，不如自己先講清楚。</p>
+<h2>什麼是 free-float</h2>
+<p><strong>總市值</strong> = 股價 × 全部發行股數。</p>
+<p>但發行在外的股票，不是每一張都真的會在市場上流通。有一大塊是「不會賣」的：</p>
+<ul>
+<li>政府持股（例如中鋼的公股）</li>
+<li>母公司、集團的策略性持股</li>
+<li>董監事、大股東的長期持股</li>
+<li>庫藏股</li>
+</ul>
+<p><strong>free-float（自由流通量）</strong> 就是把這些扣掉之後，真正在市場上可以自由買賣的部分。</p>
+<p><strong>free-float 市值</strong> = 股價 × 自由流通股數。</p>
+<h2>指數公司為什麼在乎這個</h2>
+<p>因為指數是給<strong>被動基金</strong>追蹤的。</p>
+<p>如果某檔股票有 70% 掌握在政府手上，只有 30% 在市場流通，那麼 ETF 想買進「按總市值計算的權重」，會發現<strong>市場上根本沒有那麼多貨可買</strong>——一買就把價格推上去。</p>
+<p>所以主流指數（FTSE、MSCI、S&amp;P 都一樣）計算權重時，一律採用 free-float 市值，確保 ETF 買得到、賣得掉。</p>
+<h2>關鍵：選股排名和權重計算，用的不是同一個東西</h2>
+<p>這是很多人（包括我們自己，一開始也是）搞混的地方：</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>依據</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>決定誰入選</strong>（排名、Buffer Rule）</td>
+<td><strong>發行股數</strong>計算的市值排名</td>
+</tr>
+<tr>
+<td><strong>決定權重多少</strong>（每檔佔指數幾 %）</td>
+<td>free-float 調整後的市值</td>
+</tr>
+</tbody>
+</table>
+<p>以富櫃 50 的官方規則為例，它明確寫著市值排名依「發行股數」計算，權重才做 free-float 調整。</p>
+<p><strong>所以用總市值排名來推算「誰會被納入/剔除」，方向是對的。</strong></p>
+<h2>那誤差從哪裡來？</h2>
+<p>主要來自兩個地方：</p>
+<p><strong>一、FTSE 的實際作業可能有非公開的調整。</strong> 指數公司有自己的資料庫與判斷（例如什麼算「策略性持股」有灰色地帶），這些細節不對外公開。</p>
+<p><strong>二、免費的 free-float 資料不可靠。</strong> 我們實測過用 Yahoo Finance 的 <code>floatShares</code> 欄位重建排名，結果是<strong>災難性的</strong>：</p>
+<blockquote>
+<p><strong>南電（8046）</strong>：Yahoo 的資料算出 float ratio 約 35%，重新排名後從第 29 名掉到第 66 名——遠遠超過剔除門檻。</p>
+<p>但 FTSE 實際上把南電<strong>納入</strong>了 0050。</p>
+</blockquote>
+<p>方向完全相反。用這種資料去「修正」，只會製造假訊號。</p>
+<p><strong>結論：FTSE 的 free-float 資料庫是付費授權的，沒有免費的替代品。</strong> 我們選擇用總市值排名，並且誠實承認這是一個已知的誤差來源——而不是用一份錯的資料去假裝更精確。</p>
+<h2>我們怎麼面對這個限制</h2>
+<p><strong>公開對帳。</strong></p>
+<p>每一季開獎後，我們把事前的推算和官方的結果一檔一檔比對，命中幾檔、漏掉幾檔，全部攤開。誤差有多大，數據自己會說話——這比任何「我們的模型很準」的宣稱都可信。</p>
+<p>對帳記錄在〈<a href="ledger.html">開獎對帳</a>〉。</p>
+<hr />
+<p><em>本站所有內容為公開規則的整理與歷史數據的對帳記錄，不構成投資建議。</em></p>
+<div class="ad"></div>
+</main>
+<footer><div class="fwrap">
+  <a href="about.html">關於本站</a> ・ <a href="privacy.html">隱私權政策</a> ・
+  <a href="contact.html">聯絡我們</a> ・ <a href="https://www.youtube.com/@tw_stock_catcher">YouTube 頻道</a>
+  <div class="disc">本站內容為公開指數編製規則的整理，與歷史換股結果的對帳記錄，
+  屬客觀數據呈現，<strong>不構成任何投資建議、不推介個股、不代操</strong>。
+  投資一定有風險，決策請自行判斷並承擔。</div>
+  <div class="disc">© 2026 台股指數換股資料庫</div>
+</div></footer>
+</body>
+</html>

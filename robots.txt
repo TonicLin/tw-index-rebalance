@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toniclin.github.io/tw-index-rebalance/sitemap.xml

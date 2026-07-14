@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>比價日與生效日：指數換股的關鍵時間軸｜台股指數換股資料庫</title>
+<meta name="description" content="指數換股有三個關鍵日期——比價日、公告日、生效日。比價日一過，名單其實就已經定案。本文拆解台灣50與富櫃50的時間軸差異。">
+<meta name="keywords" content="比價日, 生效日, 公告日, 指數換股, 台灣50, 富櫃50, 季度審核, 第三個星期五">
+<link rel="canonical" href="https://toniclin.github.io/tw-index-rebalance/03-key-dates.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="比價日與生效日：指數換股的關鍵時間軸｜台股指數換股資料庫">
+<meta property="og:description" content="指數換股有三個關鍵日期——比價日、公告日、生效日。比價日一過，名單其實就已經定案。本文拆解台灣50與富櫃50的時間軸差異。">
+<meta property="og:url" content="https://toniclin.github.io/tw-index-rebalance/03-key-dates.html">
+<style>
+:root { --ink:#1a2233; --muted:#5b6b85; --line:#e2e8f0; --bg:#ffffff; --soft:#f7f9fc;
+  --brand:#c2740f; --accent:#1d4ed8; --up:#c0392b; --down:#1e8449; }
+* { box-sizing:border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-size:17px; line-height:1.85;
+  font-family:"Microsoft JhengHei","微軟正黑體",-apple-system,"Segoe UI",sans-serif; }
+a { color:var(--accent); }
+header { border-bottom:1px solid var(--line); background:var(--soft); }
+.hwrap { max-width:860px; margin:0 auto; padding:18px 20px 0; }
+.brand { font-size:21px; font-weight:bold; color:var(--ink); text-decoration:none; }
+.tagline { color:var(--muted); font-size:13.5px; margin-top:2px; }
+nav { display:flex; flex-wrap:wrap; gap:4px; margin-top:14px; }
+nav a { padding:8px 14px; font-size:14.5px; text-decoration:none; color:var(--muted);
+  border-bottom:2px solid transparent; }
+nav a:hover { color:var(--ink); }
+nav a.on { color:var(--accent); border-bottom-color:var(--accent); font-weight:bold; }
+main { max-width:860px; margin:0 auto; padding:8px 20px 50px; }
+h1 { font-size:29px; line-height:1.45; margin:32px 0 8px; }
+h2 { font-size:22px; margin:38px 0 10px; padding-bottom:8px; border-bottom:1px solid var(--line); }
+h3 { font-size:18px; margin:26px 0 6px; }
+blockquote { margin:20px 0; padding:12px 18px; background:var(--soft);
+  border-left:4px solid var(--brand); color:var(--muted); }
+blockquote strong { color:var(--ink); }
+code { background:var(--soft); padding:2px 6px; border-radius:4px; font-size:14.5px; }
+pre { background:var(--soft); border:1px solid var(--line); border-radius:8px;
+  padding:14px; overflow-x:auto; }
+pre code { background:none; padding:0; font-size:13px; line-height:1.6; }
+.tablewrap { overflow-x:auto; margin:18px 0; }
+table { border-collapse:collapse; width:100%; font-size:15px; }
+th,td { padding:9px 13px; text-align:left; border-bottom:1px solid var(--line); }
+th { background:var(--soft); font-size:14px; color:var(--muted); font-weight:normal; }
+.hit { color:var(--down); font-weight:bold; } .miss { color:var(--up); font-weight:bold; }
+.hero { padding:26px 0 6px; }
+.hero h1 { margin-top:0; }
+.lead { font-size:19px; color:var(--muted); }
+.kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; margin:26px 0; }
+.kpi { border:1px solid var(--line); border-radius:10px; padding:16px 18px; background:var(--soft); }
+.kpi .v { font-size:31px; font-weight:bold; color:var(--brand); line-height:1.3; }
+.kpi .l { font-size:13.5px; color:var(--muted); }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin:20px 0; }
+.card { border:1px solid var(--line); border-radius:10px; padding:16px 18px; }
+.card a { font-weight:bold; text-decoration:none; font-size:16.5px; }
+.card p { color:var(--muted); font-size:14px; margin:6px 0 0; }
+.cta { display:block; text-align:center; margin:36px 0 0; padding:14px;
+  background:var(--brand); color:#fff; font-weight:bold; text-decoration:none; border-radius:10px; }
+.ad { margin:36px 0; min-height:1px; }
+footer { border-top:1px solid var(--line); background:var(--soft); color:var(--muted);
+  font-size:13.5px; }
+.fwrap { max-width:860px; margin:0 auto; padding:22px 20px 34px; }
+.fwrap a { color:var(--muted); }
+.disc { font-size:13px; margin-top:10px; }
+@media (max-width:600px) { body { font-size:16px; } h1 { font-size:24px; } main { padding:4px 16px 40px; } }
+</style>
+
+</head>
+<body>
+<header><div class="hwrap">
+  <a class="brand" href="index.html">📊 台股指數換股資料庫</a>
+  <div class="tagline">by 台股接盤俠 ・ 敢公開對帳的量化系統</div>
+  <nav><a href="index.html" class="">首頁</a><a href="ledger.html" class="">開獎對帳</a><a href="01-what-is-taiwan50.html" class="">台灣50 規則</a><a href="04-otc50-rules.html" class="">富櫃50 規則</a><a href="about.html" class="">關於</a></nav>
+</div></header>
+<main>
+<h1>比價日與生效日：換股的關鍵時間軸</h1>
+<p>指數換股不是一個事件，是<strong>一條時間軸</strong>。搞懂這條軸，才知道每個階段各自代表什麼。</p>
+<pre><code>   比價日                公告日                  生效日
+     │                    │                      │
+     ▼                    ▼                      ▼
+─────●────────────────────●──────────────────────●─────────→
+     │                    │                      │
+  名單「實質」定案      官方對外公布           ETF 真正買賣
+  （但沒人知道）        （名單成為公開資訊）    （被動資金進場）
+</code></pre>
+<h2>三個日期，各自的意義</h2>
+<h3>比價日（Cut-off Date）：名單實質定案的那一天</h3>
+<p>FTSE / 櫃買中心會取某一天的<strong>收盤市值</strong>來排名，決定誰進誰出。這一天就是比價日。</p>
+<p><strong>比價日一過，答案其實就已經寫好了</strong>——只是還沒公布，而且市場上絕大多數人不知道。之後就算某檔股票的排名大幅變動，也不會影響這一季的結果。</p>
+<table>
+<thead>
+<tr>
+<th>指數</th>
+<th>比價日的算法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>台灣 50</strong></td>
+<td>生效日往前推 <strong>25 個日曆天</strong></td>
+</tr>
+<tr>
+<td><strong>富櫃 50</strong></td>
+<td>審核月的<strong>前一個月最後一個交易日</strong>（也就是最近的季末）</td>
+</tr>
+</tbody>
+</table>
+<p>例：2026 年 6 月的台灣 50 審核，生效日是 6/22，比價日就是 <strong>5/25</strong>。也就是說，<strong>5 月 25 日收盤的那一刻，6 月要換哪些股票就已經定了</strong>。</p>
+<h3>公告日：官方對外公布</h3>
+<p>FTSE 與櫃買中心會在生效日之前公告換股名單。這時候消息成為公開資訊，市場開始反應。</p>
+<ul>
+<li>台灣 50：季審後公告</li>
+<li>富櫃 50：審核月<strong>第一個星期五之後的星期四</strong>（注意不是第一個星期五本身）</li>
+</ul>
+<h3>生效日：ETF 真正動手的那一天</h3>
+<p>被動基金必須在這一天完成調整。這是<strong>買賣壓力最集中</strong>的時點。</p>
+<table>
+<thead>
+<tr>
+<th>指數</th>
+<th>生效日的算法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>台灣 50</strong></td>
+<td>3/6/9/12 月<strong>第三個星期五</strong>之後的第一個交易日</td>
+</tr>
+<tr>
+<td><strong>富櫃 50</strong></td>
+<td>1/4/7/10 月<strong>第三個星期五</strong>之後的第一個交易日</td>
+</tr>
+</tbody>
+</table>
+<p>注意兩個指數的審核月份<strong>完全錯開</strong>（台灣50 在 3/6/9/12，富櫃50 在 1/4/7/10）——所以一年之中，幾乎每個季度都有一次換股事件。</p>
+<h2>為什麼「比價日到生效日」這段特別重要？</h2>
+<p>因為在這段期間，<strong>答案已經確定，但市場還沒完全反應</strong>。</p>
+<ul>
+<li>比價日之前：名單還沒定，排名還在變動，任何推算都只是機率</li>
+<li>比價日之後：名單已定，只剩「什麼時候公布」與「市場怎麼反應」</li>
+<li>生效日：被動資金強制進場</li>
+</ul>
+<p>我們的系統在比價日當天就會<strong>凍結</strong>預測名單——因為那一刻起，再看即時排名已經沒有意義了，答案已經寫在比價日的收盤數字裡。</p>
+<h2>一個容易誤解的地方</h2>
+<p>「比價日過了，名單就定了」<strong>不代表我們一定算得對</strong>。</p>
+<p>我們用的是<strong>總市值排名</strong>，FTSE 用的是它自己的資料庫（含 free-float 調整、以及一些非公開的判斷）。兩者可能有落差——這是這套方法的先天限制，我們從不隱瞞。</p>
+<p>所以我們做的事情是：<strong>在比價日當天記錄下我們的推算，等官方公告後，一檔一檔對帳，全部公開。</strong> 對了幾檔、錯了幾檔，都攤在〈<a href="ledger.html">開獎對帳</a>〉那一頁。</p>
+<hr />
+<p><em>本站所有內容為公開規則的整理與歷史數據的對帳記錄，不構成投資建議。</em></p>
+<div class="ad"></div>
+</main>
+<footer><div class="fwrap">
+  <a href="about.html">關於本站</a> ・ <a href="privacy.html">隱私權政策</a> ・
+  <a href="contact.html">聯絡我們</a> ・ <a href="https://www.youtube.com/@tw_stock_catcher">YouTube 頻道</a>
+  <div class="disc">本站內容為公開指數編製規則的整理，與歷史換股結果的對帳記錄，
+  屬客觀數據呈現，<strong>不構成任何投資建議、不推介個股、不代操</strong>。
+  投資一定有風險，決策請自行判斷並承擔。</div>
+  <div class="disc">© 2026 台股指數換股資料庫</div>
+</div></footer>
+</body>
+</html>
