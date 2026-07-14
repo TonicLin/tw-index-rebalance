@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>開獎對帳記錄：預測 vs 官方結果全部公開｜台股指數換股資料庫</title>
-<meta name="description" content="每季指數換股，事前推算與官方結果一檔一檔對帳，命中與漏掉全部公開。">
-<meta name="keywords" content="開獎對帳, 命中率, 台灣50, 富櫃50, 換股, 預測驗證">
-<link rel="canonical" href="https://toniclin.github.io/tw-index-rebalance/ledger.html">
+<title>2026 年 6 月 台灣 50 換股名單與開獎對帳｜台股指數換股資料庫</title>
+<meta name="description" content="2026 年 6 月 台灣 50 指數成分股調整，官方公告 8 檔異動，我們在比價日的推算命中 8／8 檔，逐檔對帳全部公開。">
+<meta name="keywords" content="台灣 50, 換股, 成分股調整, 2026年6月, 開獎對帳, 納入, 剔除">
+<link rel="canonical" href="https://toniclin.github.io/tw-index-rebalance/ledger-2026-06-tw50.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="開獎對帳記錄：預測 vs 官方結果全部公開｜台股指數換股資料庫">
-<meta property="og:description" content="每季指數換股，事前推算與官方結果一檔一檔對帳，命中與漏掉全部公開。">
-<meta property="og:url" content="https://toniclin.github.io/tw-index-rebalance/ledger.html">
+<meta property="og:title" content="2026 年 6 月 台灣 50 換股名單與開獎對帳｜台股指數換股資料庫">
+<meta property="og:description" content="2026 年 6 月 台灣 50 指數成分股調整，官方公告 8 檔異動，我們在比價日的推算命中 8／8 檔，逐檔對帳全部公開。">
+<meta property="og:url" content="https://toniclin.github.io/tw-index-rebalance/ledger-2026-06-tw50.html">
 <style>
 :root { --ink:#1a2233; --muted:#5b6b85; --line:#e2e8f0; --bg:#ffffff; --soft:#f7f9fc;
   --brand:#c2740f; --accent:#1d4ed8; --up:#c0392b; --down:#1e8449; }
@@ -70,21 +70,26 @@ footer { border-top:1px solid var(--line); background:var(--soft); color:var(--m
 <header><div class="hwrap">
   <a class="brand" href="index.html">📊 台股指數換股資料庫</a>
   <div class="tagline">by 台股接盤俠 ・ 敢公開對帳的量化系統</div>
-  <nav><a href="index.html" class="">首頁</a><a href="ledger.html" class="on">開獎對帳</a><a href="01-what-is-taiwan50.html" class="">台灣50 規則</a><a href="04-otc50-rules.html" class="">富櫃50 規則</a><a href="about.html" class="">關於</a></nav>
+  <nav><a href="index.html" class="">首頁</a><a href="ledger.html" class="">開獎對帳</a><a href="01-what-is-taiwan50.html" class="">台灣50 規則</a><a href="04-otc50-rules.html" class="">富櫃50 規則</a><a href="about.html" class="">關於</a></nav>
 </div></header>
 <main>
-<h1>開獎對帳記錄</h1>
-<p>每一季指數換股，我們在<strong>比價日當天</strong>就把推算的名單記錄下來；等官方公告後，一檔一檔比對。命中的、漏掉的，全部攤在這裡。</p>
-<blockquote>
-<p><strong>為什麼要做這件事</strong>：任何人都可以宣稱自己的模型很準。唯一能檢驗的方式，是把事前的推算和事後的結果並排放著，讓數字自己說話。</p>
-</blockquote>
-<div class="kpis"><div class="kpi"><div class="l">累計命中率</div><div class="v">100%</div></div><div class="kpi"><div class="l">命中檔數</div><div class="v">8/8</div></div><div class="kpi"><div class="l">已對帳次數</div><div class="v">1</div></div></div>
+<h1>2026 年 6 月・台灣 50 開獎對帳</h1>
+<p>官方在 <strong>2026-06-22</strong> 完成這一期的成分股調整，共 <strong>8</strong> 檔異動（納入 4 檔、剔除 4 檔）。
+我們的系統在<strong>比價日（2026-05-25）</strong>當天的推算結果，與官方公告結果的逐檔對帳如下——<strong>全部命中</strong>。</p>
+<div class="kpis"><div class="kpi"><div class="l">本期命中</div><div class="v">8/8</div></div><div class="kpi"><div class="l">命中率</div><div class="v">100%</div></div><div class="kpi"><div class="l">最早提前</div><div class="v">43</div><div class="l">個交易日</div></div></div>
 
-<h2>各期對帳</h2>
-<div class="tablewrap"><table><tr><th>生效日</th><th>指數</th><th>總命中</th><th>納入</th><th>剔除</th><th>最早提前</th><th></th></tr><tr><td><a href="ledger-2026-06-tw50.html">2026-06-22</a></td><td>台灣 50</td><td class="hit">8/8</td><td>4/4</td><td>4/4</td><td>43 個交易日</td><td><a href="ledger-2026-06-tw50.html">逐檔對帳 →</a></td></tr></table></div>
+<h2>關鍵時間軸</h2>
+<ul>
+<li><strong>比價日 2026-05-25</strong>：官方用這天的收盤市值排名決定去留，名單在這一刻<strong>實質定案</strong>（但尚未公布）</li>
+<li><strong>生效日 2026-06-22</strong>：追蹤指數的 ETF 實際完成買賣，被動資金在這天進出場</li>
+</ul>
+<h2>逐檔對帳</h2>
+<p>納入命中 4／4、剔除命中 4／4。</p>
+<div class="tablewrap"><table><tr><th>代號</th><th>名稱</th><th>官方動作</th><th>比價日市值排名</th><th>我們有沒有抓到</th><th>提前幾個交易日</th></tr><tr><td>3443</td><td>創意</td><td>納入</td><td>23</td><td class="hit">✅ 命中</td><td>42</td></tr><tr><td>3665</td><td>貿聯-KY</td><td>納入</td><td>38</td><td class="hit">✅ 命中</td><td>43</td></tr><tr><td>4958</td><td>臻鼎-KY</td><td>納入</td><td>28</td><td class="hit">✅ 命中</td><td>32</td></tr><tr><td>8046</td><td>南電</td><td>納入</td><td>29</td><td class="hit">✅ 命中</td><td>39</td></tr><tr><td>1301</td><td>台塑</td><td>剔除</td><td>64</td><td class="hit">✅ 命中</td><td>19</td></tr><tr><td>2002</td><td>中鋼</td><td>剔除</td><td>57</td><td class="hit">✅ 命中</td><td>23</td></tr><tr><td>2207</td><td>和泰車</td><td>剔除</td><td>68</td><td class="hit">✅ 命中</td><td>38</td></tr><tr><td>6919</td><td>康霈*</td><td>剔除</td><td>93</td><td class="hit">✅ 命中</td><td>43</td></tr></table></div>
 
-<p>每一期的逐檔明細（哪一檔命中、哪一檔漏掉、比價日排名多少）都有各自的頁面，點生效日進去看。</p>
-<p>推算方法與規則說明，見〈<a href="01-what-is-taiwan50.html">台灣50 規則</a>〉與〈<a href="02-buffer-rule.html">Buffer Rule</a>〉。</p>
+<p><strong>欄位說明</strong>：「比價日市值排名」是該股在比價日當天的總市值排名——官方就是依這天的數字決定去留。「提前幾個交易日」指我們的系統第一次把它標記出來，距離官方正式公告有多久。</p>
+<p>規則說明見〈<a href="01-what-is-taiwan50.html">台灣50 規則</a>〉、〈<a href="02-buffer-rule.html">Buffer Rule：為什麼是 40 和 61</a>〉、〈<a href="03-key-dates.html">比價日與生效日</a>〉。</p>
+<p>← 回到〈<a href="ledger.html">開獎對帳總覽</a>〉</p>
 <div class="ad"></div>
 </main>
 <footer><div class="fwrap">
